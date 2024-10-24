@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Departments</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "poppins", sans-serif;
+        }
+
+        body {
+            background-color: #c9d6ff;
+            background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+        }
+
+        .centered-logo {
+            height: 200px;
+            display: flex;
+            border-radius: 10px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .centered-logo img {
+            margin-top: 80px;
+            width: 600px;
+        }
+
+        .container {
+            background: #fff;
+            width: 450px;
+            padding: 1.5rem;
+            margin: 50px auto;
+            border-radius: 10px;
+            box-shadow: 0 20px 35px rgba(0, 0, 1, 0.9);
+        }
+
+        select, button {
+            font-size: 1.1rem;
+            padding: 15px 0;
+            text-align: center;
+            border-radius: 5px;
+            outline: none;
+            border: none;
+            width: 100%;
+            margin-bottom: 20px;
+            background: rgb(41, 128, 185);
+            color: white;
+            cursor: pointer;
+            transition: 0.9s;
+        }
+
+        select:hover {
+            background: #07001f;
+        }
+
+        button:hover {
+            background: #07001f;
+        }
+
+        #result {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="centered-logo">
+        <img src="https://i0.wp.com/jobskillsmentor.com/wp-content/uploads/2024/04/STANNS.png?resize=897%2C253&ssl=1" />
+    </div>
+    <div class="container">
+        <div>
+            <select id="Departments" name="Departments" onchange="fetchDepartmentData()">
+                <option value="">Select a Department</option>
+                <option value="Computer_Science">Computer Science</option>
+                <option value="Statistics">Statistics</option>
+                <option value="Mathematics">Mathematics</option>
+            </select>
+        </div>
+        <div>
+            <select id="Faculty_details" name="Faculty details">
+                <option value="">Select Faculty</option>
+                <option value="Shanmukha Raju">Shanmukha Raju</option>
+                <option value="Sneha">Sneha</option>
+                <option value="Rupa Sree">Rupa Sree</option>
+            </select>
+        </div>
+        <button id="submit">Submit</button>
+        <div id="result"></div>
+    </div>
+
+</body>
+</html>

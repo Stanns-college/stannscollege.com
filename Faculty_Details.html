@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Details</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+        body {
+            background-color: #c9d6ff;
+            background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+        }
+        .centered-logo {
+            height: 200px;
+            display: flex;
+            border-radius: 10px;
+            justify-content: center;
+            align-items: center;
+        }
+        .centered-logo img {
+            margin-top: 80px;
+            width: 500px;
+            background: transparent;
+        }
+        .container {
+            background: #fff;
+            width: 450px;
+            padding: 1.5rem;
+            margin: 50px auto;
+            border-radius: 10px;
+            box-shadow: 0 20px 35px rgba(0, 0, 1, 0.9);
+        }
+        h1 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            padding: 1.3rem;
+            margin-bottom: 0.4rem;
+        }
+        input {
+            color: inherit;
+            width: 100%;
+            background-color: transparent;
+            border: none;
+            border-bottom: 1px solid #757575;
+            padding-left: 1.5rem;
+            font-size: 15px;
+        }
+        .input-group {
+            padding: 1% 0;
+            position: relative;
+        }
+        input:focus {
+            background-color: transparent;
+            outline: transparent;
+            border-bottom: 2px solid hsl(327, 90%, 28%);
+        }
+        input::placeholder {
+            color: transparent;
+        }
+        label {
+            color: #757575;
+            position: relative;
+            left: 1.2em;
+            top: -1.3em;
+            cursor: auto;
+            transition: 0.3s ease all;
+        }
+        input:focus~label,
+        input:not(:placeholder-shown)~label {
+            top: -3em;
+            color: hsl(327, 90%, 28%);
+            font-size: 15px;
+        }
+        button {
+            font-size: 1.1rem;
+            padding: 8px 0;
+            border-radius: 5px;
+            outline: none;
+            border: none;
+            width: 100%;
+            background: rgb(41, 128, 185);
+            color: white;
+            cursor: pointer;
+            transition: 0.9s;
+        }
+        button:hover {
+            background: #07001f;
+        }
+    </style>
+</head>
+<body>
+    <div class="centered-logo">
+        <img src="https://i0.wp.com/jobskillsmentor.com/wp-content/uploads/2024/04/STANNS.png?resize=897%2C253&ssl=1" alt="St. Ann's College Logo"/>
+    </div>
+
+    <div class="container" id="Faculty_Details">
+        <h1>Faculty Details</h1>
+        <form id="contactForm">
+            <div class="input-group" style="margin-bottom: 20px;">
+                <input type="text" id="name" placeholder="Name" required aria-label="Name">
+                <label for="name">Name</label>
+            </div>
+            <div class="input-group" style="margin-bottom: 20px;">
+                <input type="text" id="department" placeholder="Department" required aria-label="Department"> <!-- Fixed typo from 'deparment' to 'department' -->
+                <label for="department">Department</label> 
+            </div>
+            <div class="input-group" style="margin-bottom: 20px;">
+                <input type="number" id="publications" placeholder="Publications" required aria-label="No. of Publications"> 
+                <label for="publications">No. of Publications</label>
+            </div>
+            <div class="input-group" style="margin-bottom: 20px;">
+                <input type="number" id="projects" placeholder="Projects" required aria-label="No. of Projects"> 
+                <label for="projects">No. of Projects</label>
+            <button type="submit" class="btn" id="submit">Submit</button>
+        </form>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyCh_7XBM6rqaKDEBF2cSHZzS8FcUU-vXoM",
+            authDomain: "st-ann-s-college-project.firebaseapp.com",
+            databaseURL: "https://st-ann-s-college-project-default-rtdb.firebaseio.com",
+            projectId: "st-ann-s-college-project",
+            storageBucket: "st-ann-s-college-project.appspot.com",
+            messagingSenderId: "1048157417117",
+            appId: "1:1048157417117:web:d9bb4c1a06f8ff8914ee74"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        var contactFormDB = firebase.database().ref("contactForm");
+
+        document.getElementById("contactForm").addEventListener("submit", submitForm);
+
+        function submitForm(e) {
+            e.preventDefault();
+
+            var name = getElementVal("name");
+            var department = getElementVal("department"); // Changed 'deparment' to 'department'
+            var publications = getElementVal("publications");
+            var projects = getElementVal("projects");
+            saveMessages(name, department, publications, projects); // Corrected parameters
+            alert("Details submitted successfully!"); // Added alert for confirmation
+            document.getElementById("contactForm").reset();
+        }
+
+        const saveMessages = (name, department, publications, projects) => {
+            var newContactForm = contactFormDB.push();
+
+            newContactForm.set({
+                name: name,
+                department: department,
+                publications: publications,
+                projects: projects,
+            });
+        };
+
+        const getElementVal = (id) => {
+            return document.getElementById(id).value;
+        };
+    </script>
+</body>
+</html>
