@@ -18,12 +18,12 @@ body{
 
   .centered-logo img {
     margin-top: 80px;
-    width: 500px;
+    width: 350px;
     background: transparent;
   }
 .container{
     background:#fff;
-    width:450px;
+    width:350px;
     padding:1.5rem;
     margin:50px auto;
     border-radius:10px;
